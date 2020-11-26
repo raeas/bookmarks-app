@@ -1,17 +1,19 @@
 import React, { Component } from  'react';
-import { withRouter } from 'react-router-dom';
+import BookmarksContext from '../BookmarksContext'
 import config from '../config'
 import './AddBookmark.css';
+import PropTypes from 'prop-types'
 
 const Required = () => (
   <span className='AddBookmark__required'>*</span>
 )
 
 class AddBookmark extends Component {
-  static defaultProps = {
-    onAddBookmark: () => {}
-  };
-
+  // static defaultProps = {
+  //   onAddBookmark: () => {}
+  // };
+  static contextType = BookmarksContext;
+  
   state = {
     error: null,
   };
@@ -50,17 +52,20 @@ class AddBookmark extends Component {
         url.value = ''
         description.value = ''
         rating.value = ''
+        this.context.addBookmark(data)
         this.props.history.push('/')
-        this.props.onAddBookmark(data)
       })
       .catch(error => {
         this.setState({ error })
       })
   }
 
+  handleClickCancel = () => {
+    this.props.history.push('/')
+  }
+
   render() {
     const { error } = this.state
-    const { onClickCancel } = this.props
     return (
       <section className='AddBookmark'>
         <h2>Create a bookmark</h2>
@@ -125,7 +130,7 @@ class AddBookmark extends Component {
             />
           </div>
           <div className='AddBookmark__buttons'>
-            <button type='button' onClick={onClickCancel}>
+            <button type='button' onClick={this.handleClickCancel}>
               Cancel
             </button>
             {' '}
@@ -139,4 +144,18 @@ class AddBookmark extends Component {
   }
 }
 
-export default withRouter(AddBookmark);
+AddBookmark.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  rating: PropTypes.number,
+  description: PropTypes.string
+};
+
+AddBookmark.defaultProps = {
+  title: "",
+  url: "",
+  rating: 1,
+  description: ""
+};
+
+export default AddBookmark;
