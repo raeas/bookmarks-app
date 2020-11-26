@@ -23,3 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 REACT_APP_API_KEY='\$2a$10$lR49yc3SvLxVDtB/y49s8.YHiTsQvQyqiXP.LMuLJsz6HVTnQF/ZG'
+.vercel
