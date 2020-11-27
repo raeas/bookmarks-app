@@ -1,4 +1,15 @@
-# Bookmarks React Client
-_This project is a demonstration for Thinkful's React course_
+# Bookmarks App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Module: Client-side programming with React
+
+### Objective(s)
+* Learn React Router
+* Using context w/ API data
+* Using controlled forms in React
+* Deploying code to production
+
+### Tech Stack
+* React.js
+* HTML
+* CSS
+* JavaScript
